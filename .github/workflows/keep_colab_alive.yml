@@ -1,0 +1,13 @@
+
+name: Keep Colab Alive
+on:
+  schedule:
+    - cron: '0 * * * *'
+jobs:
+  run-colab:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+          pip install --quiet pyTelegramBotAPI gitpython requests
+          jupyter nbconvert --execute --inplace agent_zero_immortelle_c1.ipynb
